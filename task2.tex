@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[a5paper,left=1cm,top=1cm,right=1cm,bottom=1cm]{geometry}
+\usepackage{textcomp}
+\usepackage{wasysym}
+
+\pagestyle{empty}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+\theoremstyle{definition}\newtheorem*{definition}{Определение}
+\theoremstyle{plain}\newtheorem{theorem}{Теорема}[subsection]
+
+\DeclareMathOperator{\E}{\mathsf{E}}
+\DeclareMathOperator{\D}{\mathsf{D}}
+\DeclareMathOperator{\N}{\mathcal{N}}
+\DeclareMathOperator{\Real}{\mathbb{R}}
+\DeclareMathOperator{\Mat}{\text{\textnormal{Mat}}}
+
+\renewcommand{\thetheorem}{\arabic{theorem}}
+
+\renewcommand{\labelitemi}{\blacksmiley}
+
+\parindent=0cm
+\parskip=3pt
+
+\newcounter{taskNumber}[section]
+\renewcommand{\thetaskNumber}{\thesection.\arabic{taskNumber}}
+\newenvironment{task}[1]
+    {\bigskip \refstepcounter{taskNumber} \noindent \textbf{\underline{Задача \thetaskNumber. #1}}\\[5pt]}
+    {\smallskip}
+
+\begin{document}
+    \section{Теория вероятностей}
+    
+    \subsection{Центральная предельная теорема}
+    
+    \begin{theorem}[Линдеберга]
+        Пусть $\{\xi_k\}_{k \geqslant 1}$~--- независимые случайные величины, $\forall \, k \; \E \xi_k < +\infty$. Обозначим $m_k=\E \xi_k$, $\sigma_k^2 = \D \xi_k > 0$, $S_n=\sum \limits_{i=0}^n \xi_i$, $D_n^2 = \sum \limits_{k=0}^n \sigma_k^2$ и $F_k(x)$~--- функция распределения $\xi_k$. Пусть выполнено условие Линдеберга, то есть
+        $$
+            \forall \, \varepsilon > 0 \quad \frac{1}{D_n^2} \sum_{k=1}^{n} \int \limits_{\{x:\, \vert x - m_k \vert > \varepsilon D_n\}} (x-m_k)^2 dF_k(x) \xrightarrow[n\rightarrow \infty]{} 0.
+        $$
+        Тогда $\dfrac{S_n - \E S_n}{\sqrt{DS_n}} \overset{d}{\longrightarrow} \N (0, 1)$, $n\rightarrow \infty$.
+    \end{theorem}
+    
+    \subsection{Гауссовские случайные векторы}
+    
+    \begin{definition}
+        Случайный вектор $\vec \xi \sim \N(\text{т. }\Sigma)$~--- гауссовский, если его характеристическая функция $\varphi_{\vec \xi}\, (\vec t)=\exp (i(\vec m,\, \vec t)-\frac{1}{2}(\Sigma \vec t,\, \vec t))$, $\vec m \in \Real^n$, $\Sigma$~--- симметричная неотрицательно определенная матрица.
+    \end{definition}
+    
+    \begin{definition}
+        Случайный вектор $\vec \xi$~--- гауссовский, если он представляется в следующем виде: $\vec \xi = A\vec\eta + \vec b$, где $\vec b \in \Real^n$, $A \in \Mat(n \times m)$ и $\eta = (\eta_1, \ldots, \eta_m)$~--- независимый, $\eta \sim \N(0, 1)$.
+    \end{definition}
+    
+    \begin{definition}
+        Случайный вектор $\vec \xi$~--- гауссовский, если $\forall \, \vec \lambda \in \Real^n$ случайная величина $(\vec \lambda, \, \vec \xi)$ имеет нормальное распределение.
+    \end{definition}
+    
+    \begin{theorem}[об эквивалентности определений гауссовских векторов]
+        Предыдущие три определения эквивалентны.
+    \end{theorem}
+    
+    \section{Задачи по астрономии}
+    
+    \begin{task}{Обратный комптон-эффект}
+        Обратным эффектом Комптона (ОЭК) называют явление рассеивания фотона на ультрарелятивистском свободном электроне, при котором происходит перенос энергии от электрона к фотону. Рассмотрите ОЭК для фотонов реликтового излучения. При какой энергии электронов в направленном пучке рассеяное излучение можно будет зарегистрировать на фотоприёмнике?
+    \end{task}
+    
+    \begin{task}{К Сатурну!}
+        Космический корабль запустили с поверхности Земли к Сатурну по наиболее энергетически выгодной траектории. При движении по орбите корабль пролетел мимо астероида--троянца (624) Гектор.
+
+        Определите большую полуось и эксцентриситет полученной орбиты, скорость старта с поверхности Земли, а также угол между направлением на Солнце и на Сатурн в момент старта корабля. Орбиты планет считать круговыми. Оцените относительную скорость корабля и астероида в момент сближения.
+    \end{task}
+    
+    \begin{task}{Dark Matters}
+        В некотором скоплении галактик содержится 70 спиральных и 30 эллиптических галактик. Известно, что абсолютная звездная величина эллиптических галактик равна --20, соотношение масса--светимость составляет $15\mathfrak{M}_\odot /L_\odot$. У спиральных галактик в данном скоплении максимальная скорость вращения составляет 210 км/с, соотношение масса--светимость~--- $5\mathfrak{M}_\odot /L_\odot$.
+        
+        Оцените долю темной материи внутри скопления, если масса межгалактического газа на порядок превышает массу галактик, а типичные скорости галактик в скоплении составляют 1000 км/с. Размер скопления составляет 7 Мпк. Абсолютная звёздная величина Млечного Пути~--- --20.9.
+    \end{task}
+    
+    \begin{task}{H II}
+        Предположим, что за пределами солнечного круга кривая вращения Галактики плоская, параметр плато $v$ = 240 км/с. Пусть известно, что диск нейтрального водорода простирается до галактоцентрического расстояния $R_max$ = 50 кпк. Мы наблюдаем облако нейтрального водорода на галактической долготе $l$ = 140\textdegree. Оцените максимально возможное значение лучевой скорости этого облака.
+    \end{task}
+    
+    \section{Отзыв}
+    
+    \begin{itemize}
+        \item Курс мне нравится (инаяе бы я на него не продолжал ходить).
+        \item Организация курса на достаточно высоком уровне.
+        \item Хорошая подборка материала, но иногда не хватает иллюстративных примеров.
+    \end{itemize}
+\end{document}
